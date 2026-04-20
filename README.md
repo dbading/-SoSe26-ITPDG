@@ -15,9 +15,9 @@ Die Inhalte dieses Repositories sind thematisch geordnet.
 Zu jedem Thema sollen nach und nach Visualisierungen, numerische Experimente und kurze Erklärungen ergänzt werden.
 
 - [Fourierreihen](./Fourier_Reihen/) – Approximation periodischer Funktionen durch Partialsummen
-<!--
-- [Fouriertransformation](./fouriertransformation/) – Analyse von Funktionen im Frequenzraum
 - [Faltung](./faltung/) – Visualisierung der Faltung und ihrer Bedeutung
+- [Fouriertransformation](./fouriertransformation/) – Analyse von Funktionen im Frequenzraum
+<!--
 - [Wärmeleitungsgleichung](./waermeleitungsgleichung/) – Diffusion und zeitliche Entwicklung von Lösungen
 - [Wellengleichung](./wellengleichung/) – Wellenausbreitung und Schwingungsverhalten
 - [Laplace-Gleichung](./laplace-gleichung/) – stationäre Lösungen und Randwertprobleme
