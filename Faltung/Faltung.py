@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import time
 
+safe_gif = False
+
 #####################################
 # define functions to convolve here #
 #####################################
@@ -113,3 +115,19 @@ def animate_convolution(f, g, x, f_l, f_r, g_l, g_r, n_integration):
 animate_convolution(parameters()["f"], parameters()["g"], np.linspace(-2, 2, parameters()["n_plot"]), parameters()["f_l"], parameters()["f_r"], parameters()["g_l"], parameters()["g_r"], parameters()["n_integration"])
 
 
+# Optional: save animation
+if safe_gif == True:
+    from pathlib import Path
+
+    gifs_dir = Path("./gifs")
+    gifs_dir.mkdir(exist_ok=True)
+
+    i = 1
+    while (gifs_dir / f"faltung_animation_{i}.gif").exists():
+        i += 1
+
+    save_path = gifs_dir / f"faltung_animation_{i}.gif"
+    print(save_path)
+    ani = animate_convolution(parameters()["f"], parameters()["g"], np.linspace(-2, 2, parameters()["n_plot"]), parameters()["f_l"], parameters()["f_r"], parameters()["g_l"], parameters()["g_r"], parameters()["n_integration"], interval=40, save_path=str(save_path), fps=20)
+
+    # ani = animate_fourier_transform(data, interval=40, save_path="fourier_transform_animation.mp4", fps=20)

@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
+safe_gif = False
 
 def parameters():
     return {
@@ -165,4 +166,19 @@ if __name__ == "__main__":
     ani = animate_fourier_series(x, f_x, partial_sums, interval=120)
 
     # Optional: save animation
-    # ani.save("fourier_animation.gif", writer="pillow", fps=12)
+    if safe_gif == True:
+        from pathlib import Path
+
+        gifs_dir = Path("./gifs")
+        gifs_dir.mkdir(exist_ok=True)
+
+        i = 1
+        while (gifs_dir / f"fourier_series_animation_{i}.gif").exists():
+            i += 1
+
+        save_path = gifs_dir / f"fourier_series_animation_{i}.gif"
+        print(save_path)
+        ani = animate_fourier_series(x, f_x, partial_sums, interval=40, save_path=str(save_path), fps=20)
+        
+        # ani = animate_fourier_transform(data, interval=40, save_path="fourier_transform_animation.mp4", fps=20)
+
