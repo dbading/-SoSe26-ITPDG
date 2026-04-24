@@ -2,18 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-safe_gif = True
+safe_gif = False
 
 def parameters():
     return {
-        "l": -2,
-        "r": 2,
+        "l": -10.0,
+        "r": 10.0,
         # Example function. Replace directly if you want.
         # "f": lambda x: np.exp(-(x**2)) * (1.0 + 0.4 * np.cos(6.0 * x)),
         # "f": lambda x: np.where(np.abs(x + 0.5*(l + r)) <= 0.5*(r - l) <= 1, -np.abs(x)+1, 0.0),
         # "f": lambda x: np.where(np.abs(x + 0.5*(l + r)) <= 0.5*(r - l) <= 0.5, 1.0, 0.0),
         # "f": lambda x: np.where(np.abs(x + 0.5*(l + r)) <= 0.5*(r - l) , -np.abs(x)+1, 0.0),
-        "f": lambda x: -np.abs(x) + r,
+        # "f": lambda x: -np.abs(x) + r,
+        # "f": lambda x: np.sin(x), # Hausaufgabe 2.1
+        "f": lambda x: -np.exp(-np.abs(x)),
         # "f": lambda x: np.exp(-x**2),
         "n_plot": 1200,
         "n_integration": 5000,
@@ -111,7 +113,7 @@ def plot_static_overview(data):
     axes[0].set_xlabel("x")
     axes[0].set_ylabel("f(x)")
     axes[0].grid(True, alpha=0.3)
-    axes[0].legend()
+    axes[0].legend(loc = "upper right")
 
     axes[1].plot(omega_values, transform_real, linewidth=2, label=r"$\Re(\hat f(\omega))$")
     axes[1].plot(omega_values, transform_imag, linewidth=2, label=r"$\Im(\hat f(\omega))$")
@@ -120,7 +122,7 @@ def plot_static_overview(data):
     axes[1].set_xlabel(r"$\omega$")
     axes[1].set_ylabel(r"$\hat f(\omega)$")
     axes[1].grid(True, alpha=0.3)
-    axes[1].legend()
+    axes[1].legend(loc = "upper right")
 
     plt.tight_layout()
     plt.show()
@@ -150,7 +152,7 @@ def animate_fourier_transform(data, interval=50, repeat=True, save_path=None, fp
     ax1.set_xlabel("x")
     ax1.set_ylabel("value")
     ax1.grid(True, alpha=0.3)
-    ax1.legend()
+    ax1.legend(loc = "upper right")
 
     # Panel 2: current real and imaginary integrands
     line_integrand_real, = ax2.plot(x_plot, integrand_real_list[0], linewidth=2, label=r"$f(x)\cos(\omega x)$")
@@ -159,7 +161,7 @@ def animate_fourier_transform(data, interval=50, repeat=True, save_path=None, fp
     ax2.set_xlabel("x")
     ax2.set_ylabel("value")
     ax2.grid(True, alpha=0.3)
-    ax2.legend()
+    ax2.legend(loc = "upper right")
 
     # Panel 3: transform built up while omega is swept
     line_transform_real, = ax3.plot([], [], linewidth=2, label=r"$\Re(\hat f(\omega))$")
