@@ -24,7 +24,7 @@ from matplotlib.patches import Polygon
 # Export / display switches
 # -----------------------------------------------------------------------------
 
-SAVE_GIF = False
+SAVE_GIF = True
 SHOW_ANIMATION_AFTER_SAVING = True
 
 
@@ -78,14 +78,14 @@ SHOW_ANIMATION_AFTER_SAVING = True
 #     y = np.sin(x * (2 * np.pi) / period + phase_shift) * box(1 / box_stretch * (x - box_shift))
 #     return y
 
-# def M_1(x):
-#     return np.where(np.abs(x) < 1, 1 - np.abs(x), 0)
+def M_1(x):
+    return np.where(np.abs(x) < 1, 1 - np.abs(x), 0)
 
-# def M_k(k, x):
-#     if k == 1:
-#         return M_1(x)
-#     else:
-#         return np.convolve(M_1(x), M_k(k - 1, x), mode="same") * (x[1] - x[0])
+def M_k(k, x):
+    if k == 1:
+        return M_1(x)
+    else:
+        return np.convolve(M_1(x), M_k(k - 1, x), mode="same") * (x[1] - x[0])
 
 # def tut_3_4(x):
 #     return 1 / (1 + x**2)
@@ -101,17 +101,17 @@ SHOW_ANIMATION_AFTER_SAVING = True
 def parameters():
     return {
         # Support interval of f
-        "f_l": 0,
-        "f_r": 1,
-        "f": lambda x: 1,
+        "f_l": -5,
+        "f_r": 5,
+        "f": lambda x: M_k(3, x),
 
         # Support interval of g
-        "g_l": 0,
+        "g_l": -1,
         "g_r": 1,
         "g": lambda x: 1,
 
         # x-range for the convolution curve
-        "x_min": -0.5,
+        "x_min": -2.5,
         "x_max": 2.5,
 
         # Numerical resolution of the displayed convolution curve.
