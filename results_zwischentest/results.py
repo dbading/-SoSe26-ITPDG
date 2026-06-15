@@ -3,7 +3,7 @@ import numpy as np
 import csv
 import pandas as pd 
 
-with open('results_zwsichentest/results_1.csv', 'r') as f:
+with open('results_zwischentest/results_1.csv', 'r') as f:
     reader = csv.reader(f)
     data = list(reader) 
 df = pd.DataFrame(data[1:], columns=data[0])
@@ -47,7 +47,10 @@ plt.title('Mean and Standard Deviation of F1-F9')
 plt.xlabel('F1-F9')
 plt.ylabel('Mean and Standard Deviation')
 plt.xticks(range(1,10))
-plt.show()  
+# save plot in results_zwischentest/plots/ as mean_std_plot.png
+plt.savefig('results_zwischentest/plots/mean_std_plot.png')
+plt.show() 
+
 
 # --- violin plot --- #
 data = [df[f'F{i}'] for i in range(1,10)]
@@ -56,6 +59,8 @@ plt.title('Violin Plot of F1-F9')
 plt.xlabel('F1-F9')
 plt.ylabel('Scores')
 plt.xticks(range(1,10))
+# save plot in results_zwischentest/plots/ as violin_plot.png
+plt.savefig('results_zwischentest/plots/violin_plot.png')
 plt.show()
 
 # ---- histogram of Fi ---- #
@@ -65,6 +70,9 @@ plt.hist(df[f'F{i}'], bins=int(max(df[f'F{i}'])), edgecolor='black')
 plt.title(f'Histogram of F{i}')
 plt.xlabel(f'F{i} Score')
 plt.ylabel('Frequency')
+# save plot in results_zwischentest/plots/ as F{i}_histogram.png
+plt.savefig(f'results_zwischentest/plots/F{i}_histogram.png')
 plt.show()
+
 
 print(df[f'F{i}'].tolist())
