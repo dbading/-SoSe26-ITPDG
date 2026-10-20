@@ -15,11 +15,12 @@ def parameters():
         "l": -1.0,
         "r": 1.0,
         # "f": lambda x: x,
-        "f": lambda x: np.where( x < 0, 1, 0),  # Die Funktion, die approximiert werden soll.
+        # "f": lambda x: np.sin(x),
+        "f": lambda x: np.where( x < 0, 0, 1),  # Die Funktion, die approximiert werden soll.
         "n_terms": 20,
         "n_plot": 1200,
         "n_integration": 5000,
-        "formula_html": "f(x) = x",  # Nur die Beschriftung, unabhängig von f.
+        "formula_html": "f(x) = sin(x)",  # Nur die Beschriftung, unabhängig von f.
     }
 
 
